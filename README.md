@@ -2,15 +2,19 @@
 
 Track weight in a Flutter app with a Firestore back-end.
 
+Video:
+https://drive.google.com/file/d/10d7S69hfaNUMTMW4vdhVpMEdYFcbauLW/view?usp=sharing
+
+## Description
+
+This organizes weights by date using live data showing the latest at the top.
+
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This app should run like a normal flutter app as I have checked in
+all the generated code. Be sure to run `flutter pub get` to get
+all the dependencies.
 
-A few resources to get you started if this is your first Flutter project:
+## Notes
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Not tested on iOS as I do not have a Mac.
