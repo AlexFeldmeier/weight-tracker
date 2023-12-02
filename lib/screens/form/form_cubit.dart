@@ -26,16 +26,4 @@ class FormCubit extends Cubit<WeightModel> {
     }
     await weightRepository.deleteWeight(_weightModel.id!);
   }
-
-  String? validate(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a weight';
-    }
-    final number = double.tryParse(value);
-    if (number == null) {
-      return 'Please enter a valid number';
-    }
-    return null;
-
-  }
 }

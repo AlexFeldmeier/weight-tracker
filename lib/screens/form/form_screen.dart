@@ -39,15 +39,19 @@ class FormScreen extends HookWidget {
         body: Padding(
           padding: const EdgeInsets.all(ThemeConstants.screenPadding),
           child: Builder(
-            builder: (context) => TextFormField(
+            builder: (context) => TextField(
               controller: textController,
+              autofocus: true,
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              validator: (value) => context.read<FormCubit>().validate(value),
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+              ],
               decoration: const InputDecoration(
-                labelText: 'Weight in lbs',
+                hintText: 'Weight',
+                suffixText: 'lbs',
               ),
               onChanged: (value) => context.read<FormCubit>().setWeight(double.tryParse(value) ?? 0),
-              onFieldSubmitted: (value) => submit(context),
+              onSubmitted: (value) => submit(context),
               textInputAction: TextInputAction.done,
             ),
           ),

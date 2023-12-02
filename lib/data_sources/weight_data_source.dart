@@ -7,7 +7,7 @@ class WeightDataSource {
   WeightDataSource(this._firestore);
 
   Stream<List<Map<String, dynamic>>?> getWeights() {
-    return _firestore.collection('weights').orderBy('timestamp').snapshots().map((snapshot) {
+    return _firestore.collection('weights').orderBy('timestamp', descending: true).snapshots().map((snapshot) {
       try {
         return snapshot.docs.map((doc) => doc.data()).toList();
       } catch (e) {

@@ -28,6 +28,9 @@ class ListScreen extends StatelessWidget {
                 final weight = weights[index];
                 return ListTile(
                   title: Text('${weight.lbs?.toString() ?? ''} lbs'),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(ThemeConstants.listItemRadius)),
+                  ),
                   onTap: () => context.go('/list/edit', extra: {'weight': weight}),
                 );
               },
