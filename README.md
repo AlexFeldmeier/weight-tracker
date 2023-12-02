@@ -1,6 +1,6 @@
 # weight_tracker
 
-A new Flutter project.
+Track weight in a Flutter app with a Firestore back-end.
 
 ## Getting Started
 
