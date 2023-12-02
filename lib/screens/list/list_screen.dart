@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:weight_tracker/constants/theme_constants.dart';
 import 'package:weight_tracker/repositories/weight_repository.dart';
 import 'package:weight_tracker/screens/list/list_cubit.dart';
 
@@ -14,12 +15,6 @@ class ListScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Log'),
-          actions: [
-            IconButton(
-              onPressed: () => context.go('/add'),
-              icon: const Icon(Icons.add),
-            ),
-          ],
         ),
         body: BlocBuilder<ListCubit, ListState>(
           builder: (context, state) => state.when(
@@ -27,6 +22,7 @@ class ListScreen extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
             loaded: (weights) => ListView.builder(
+              padding: const EdgeInsets.all(ThemeConstants.screenPadding),
               itemCount: weights.length,
               itemBuilder: (context, index) {
                 final weight = weights[index];

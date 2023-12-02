@@ -4,7 +4,7 @@ import 'package:weight_tracker/repositories/weight_repository.dart';
 
 class FormCubit extends Cubit<WeightModel> {
   final WeightRepository weightRepository;
-  late final WeightModel _weightModel;
+  late WeightModel _weightModel;
 
   FormCubit(this.weightRepository, WeightModel? existingWeightModel)
       : super(existingWeightModel ?? const WeightModel()) {
@@ -12,7 +12,8 @@ class FormCubit extends Cubit<WeightModel> {
   }
 
   setWeight(double weight) {
-    return _weightModel.copyWith(lbs: weight);
+    _weightModel = _weightModel.copyWith(lbs: weight);
+    emit(_weightModel);
   }
 
   Future<void> saveWeight() async {
@@ -24,5 +25,17 @@ class FormCubit extends Cubit<WeightModel> {
       return;
     }
     await weightRepository.deleteWeight(_weightModel.id!);
+  }
+
+  String? validate(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a weight';
+    }
+    final number = double.tryParse(value);
+    if (number == null) {
+      return 'Please enter a valid number';
+    }
+    return null;
+
   }
 }

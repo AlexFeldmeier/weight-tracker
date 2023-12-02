@@ -6,10 +6,10 @@ import 'package:weight_tracker/screens/login/login_screen.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/',
     routes: [
       GoRoute(
-        path: '/login',
+        path: '/',
         builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
@@ -17,11 +17,11 @@ abstract class AppRouter {
         builder: (context, state) => const ListScreen(),
         routes: [
           GoRoute(
-            path: '/add',
+            path: 'add',
             builder: (context, state) => const FormScreen(),
           ),
           GoRoute(
-            path: '/edit',
+            path: 'edit',
             builder: (context, state) => FormScreen(
               existingWeightModel: (state.extra as Map<String, dynamic>)['weight'] as WeightModel,
             ),

@@ -11,9 +11,9 @@ import 'package:weight_tracker/repositories/weight_repository.dart';
 import 'package:weight_tracker/router.dart';
 
 void main() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(const MyApp());
 }
@@ -30,21 +30,21 @@ class MyApp extends StatelessWidget {
         // ----- Resources -----
         //
         Provider(
-          create: (_) => FirebaseAuth.instance,
+          create: (context) => FirebaseAuth.instance,
         ),
         Provider(
-          create: (_) => FirebaseFirestore.instance,
+          create: (context) => FirebaseFirestore.instance,
         ),
         //
         // ----- Data sources -----
         //
         Provider(
-          create: (_) => AuthDataSource(
+          create: (context) => AuthDataSource(
             context.read<FirebaseAuth>(),
           ),
         ),
         Provider(
-          create: (_) => WeightDataSource(
+          create: (context) => WeightDataSource(
             context.read<FirebaseFirestore>(),
           ),
         ),
@@ -52,12 +52,12 @@ class MyApp extends StatelessWidget {
         // ----- Repositories -----
         //
         Provider(
-          create: (_) => AuthRepository(
+          create: (context) => AuthRepository(
             context.read<AuthDataSource>(),
           ),
         ),
         Provider(
-          create: (_) => WeightRepository(
+          create: (context) => WeightRepository(
             context.read<WeightDataSource>(),
           ),
         ),
@@ -66,6 +66,10 @@ class MyApp extends StatelessWidget {
         title: 'Weight Tracker',
         theme: ThemeData(
           primarySwatch: Colors.red,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+          ),
         ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,

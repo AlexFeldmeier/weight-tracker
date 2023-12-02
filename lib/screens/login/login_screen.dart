@@ -23,10 +23,13 @@ class LoginScreen extends StatelessWidget {
             title: const Text('Weight Tracker'),
           ),
           body: Center(
-              child: ElevatedButton(
-            onPressed: () => context.read<LoginCubit>().login(),
-            child: const Text('Login'),
-          )),
+            child: Builder(
+              builder: (context) => ElevatedButton(
+                onPressed: () => context.read<LoginCubit>().login(),
+                child: const Text('Login'),
+              ),
+            ),
+          ),
         ),
       ),
     );
